@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build/','static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 #Dec 15 16:28:21 bilal-5 systemd[1]: gunicorn.socket: Failed with result 'service-sta>
 
