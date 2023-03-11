@@ -17,7 +17,7 @@ from .send_email import (send_confirmation_email,
 User = get_user_model()
 
 
-class RegistrationView(APIView):
+class RegistrationView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
@@ -30,7 +30,7 @@ class RegistrationView(APIView):
         return Response('Bad request!!!', status=400)
 
 
-class ActivationView(APIView):
+class ActivationView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, activation_code):
@@ -61,7 +61,7 @@ class LogoutView(GenericAPIView):
 
 
 ''' Restore '''
-class ForgotPasswordView(APIView):
+class ForgotPasswordView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
