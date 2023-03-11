@@ -1,7 +1,6 @@
 # rest_framework
 from rest_framework import permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.viewsets import ModelViewSet
@@ -19,6 +18,7 @@ User = get_user_model()
 
 class RegistrationView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
+    serializer_class = serializers.RegisterSerializer
 
     def post(self, request):
         serializer = serializers.RegisterSerializer(data=request.data)
@@ -32,6 +32,7 @@ class RegistrationView(GenericAPIView):
 
 class ActivationView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
+    
 
     def get(self, request, activation_code):
         try:
@@ -63,6 +64,7 @@ class LogoutView(GenericAPIView):
 ''' Restore '''
 class ForgotPasswordView(GenericAPIView):
     permission_classes = (permissions.AllowAny,)
+    serializer_class = serializers.ForgotPasswordSerializer
 
     def post(self, request):
         from random import randint
