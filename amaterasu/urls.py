@@ -9,6 +9,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -34,7 +36,12 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-    path('api/', include('organizations.urls'))
+    path('api/', include('organizations.urls')),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'dj_database_url',
     'drf_yasg',
     'corsheaders',
+    'drf_spectacular',
 
     # my_apps
     'account',
@@ -157,6 +158,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
@@ -196,3 +199,11 @@ CELERY_BROKEN_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Amaterasu Project',
+    'DESCRIPTION': 'The Best Project In The World',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
