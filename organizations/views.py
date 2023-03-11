@@ -1,10 +1,14 @@
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 from .permissions import IsAuthor
 from . import serializers, models
 
+class OrganizationListCreateView(ListCreateAPIView):
+    serializer_class = serializers.OrganizationSerializer
+    queryset = models.Organization.objects.all()
 
-class OrganizationView(ModelViewSet):
+class OrganizationRetrieveView(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.OrganizationSerializer
     queryset = models.Organization.objects.all()
 

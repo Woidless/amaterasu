@@ -14,7 +14,7 @@ router = SimpleRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-    path('api/', include('organizations.urls')),
+    path('', include('organizations.urls')),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
