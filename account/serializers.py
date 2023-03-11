@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
-from .models import CustomUser
+# from .models import CustomUser
 
 User = get_user_model()
 
@@ -22,7 +22,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                 'email',
                 'password',
                 'password2',
-                'number',
                 )
 
     def validate(self, attrs):
@@ -67,6 +66,7 @@ class RestorePasswordSerializer(serializers.Serializer):
     password2 = serializers.CharField(min_length=8, required=True, write_only=True)
 
     def validate(self, attrs):
+        print('validate')
         password2 = attrs.pop('password2')
         if attrs['password'] != password2:
             raise serializers.ValidationError('Passwords did not match!')
@@ -74,9 +74,11 @@ class RestorePasswordSerializer(serializers.Serializer):
         #     raise serializers.ValidationError('Password field must contain'
         #                                       'alpha symbols and numbers!')
         try:
+
             user = User.objects.get(
                 activation_code=attrs['code']
             )
+            print('нашел!!!!!!!!!')
         except User.DoesNotExist:
             raise serializers.ValidationError(
                 'Invalid code'
@@ -85,17 +87,10 @@ class RestorePasswordSerializer(serializers.Serializer):
         return attrs
     
     def save(self, **kwargs):
+        print('---------------------------------------------------'*5)
         data = self.validated_data
         user = data['user']
         user.set_password(data['password'])
         user.activation_code = ''
         user.save()
         return user
-
-
-
-class UserListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = CustomUser
-        fields = ('__all__')

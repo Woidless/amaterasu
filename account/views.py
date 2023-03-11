@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.viewsets import ModelViewSet
-from .models import CustomUser
+# from .models import CustomUser
 
 from django.contrib.auth import get_user_model
 
@@ -89,12 +89,3 @@ class RestoreView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.RestorePasswordSerializer
 
-
-class UserListViewSet(ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = serializers.UserListSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-        serializer.save(owner=self.request.user.email)

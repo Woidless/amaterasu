@@ -51,6 +51,9 @@ class CustomUser(AbstractUser):
     is_superuser = models.BooleanField('status', blank=True)
     activation_code = models.CharField(max_length=220, blank=True)
 
+    is_pro = models.BooleanField('specialization', blank=True, default=False)
+    is_client = models.BooleanField('client', blank=True, default=False)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
