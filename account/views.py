@@ -89,3 +89,7 @@ class RestoreView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = serializers.RestorePasswordSerializer
 
+class RetriewView(ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = serializers.DateilSerializer
+    queryset = User.objects.all()

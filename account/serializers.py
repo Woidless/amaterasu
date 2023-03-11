@@ -94,3 +94,10 @@ class RestorePasswordSerializer(serializers.Serializer):
         user.activation_code = ''
         user.save()
         return user
+
+
+class DateilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'email')
+        
