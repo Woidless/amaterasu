@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # my_apps
     'account',
     'specialization',
+    'organizations',
 ]
 
 MIDDLEWARE = [
