@@ -34,7 +34,6 @@ INSTALLED_APPS = [
 
     # my_apps
     'account',
-
 ]
 
 MIDDLEWARE = [
@@ -50,7 +49,7 @@ MIDDLEWARE = [
     # inst_apps
 ]
 
-ROOT_URLCONF = 'makaron.urls'
+ROOT_URLCONF = 'amaterasu.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'makaron.wsgi.application'
+WSGI_APPLICATION = 'amaterasu.wsgi.application'
 
 
 # Database
