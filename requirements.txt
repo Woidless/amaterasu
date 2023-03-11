@@ -1,7 +1,6 @@
 amqp
 asgiref
 async-timeout
-backports.zoneinfo
 billiard
 celery
 certifi
